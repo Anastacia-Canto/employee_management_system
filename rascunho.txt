@@ -1,0 +1,19 @@
+Principal - Miles __ Management __ Description
+                |              |__ Manager
+                |              |__ Team __ Full Name
+                |                           |__ Age
+                |                           |__ Salary
+                |                           |__ Area
+                |                           |__ Role
+                |
+                |___ Tech ________ Description
+                               |__ Manager
+                |              |__ Team
+                |
+                |___ Design ______ Description
+                               |__ Manager
+                |              |__ Team
+                |
+                |___ Marketing ___ Description
+                               |__ Manager
+                               |__ Team
