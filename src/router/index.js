@@ -4,6 +4,7 @@ import HomeView from "../App.vue"
 import WorkspaceView from "../views/WorkspaceView.vue";
 import EmployeesComp from "../components/EmployeesComp.vue";
 import AddWorkspaceView from "../views/AddWorkspaceView.vue";
+import AddEmployeeView from "../views/AddEmployeeView.vue";
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,11 @@ const routes = [
     path: "/addWorkspace",
     name: "addWorkspace",
     component: AddWorkspaceView,
+  },
+  {
+    path: "/addEmployee",
+    name: "addEmployee",
+    component: AddEmployeeView,
   },
 ];
 

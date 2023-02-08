@@ -56,7 +56,7 @@ export default {
             try {
                 this.areas = await JSON.parse(localStorage.getItem('workspaces'))
             } catch (e){
-                localStorage.removeItem('workspaces')
+                console.log(e.message)
             }
         }
     },

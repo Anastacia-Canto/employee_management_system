@@ -61,7 +61,7 @@
         v => v.length <= 30 || 'Name must be less than 20 characters',
       ],
     }),
-    mounted() {
+    created() {
         if (localStorage.getItem('workspaces')){
             try {
                 this.workspaces = JSON.parse(localStorage.getItem('workspaces'))
