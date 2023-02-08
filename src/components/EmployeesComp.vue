@@ -6,19 +6,19 @@
             </v-list> -->
             <v-list three-line>
             <template v-for="employee in team">
-                <v-list-item :key="employee.fullName">
-                <v-list-item-avatar v-if="employee.area === workspaceName">
+                <v-list-item :key="employee.fullName" v-if="employee.area === workspaceName">
+                <v-list-item-avatar>
                     <v-img :src="employee.avatar"></v-img>
                 </v-list-item-avatar>
 
-                <v-list-item-content v-if="employee.area === workspaceName">
+                <v-list-item-content>
                     <v-list-item-title >{{ employee.fullName }}</v-list-item-title>
                     <v-list-item-subtitle> {{ employee.age }} anos</v-list-item-subtitle>
                     <v-list-item-subtitle> {{ employee.role }} </v-list-item-subtitle>
                     <v-list-item-subtitle> {{ employee.area }} </v-list-item-subtitle>
                 </v-list-item-content>
                 </v-list-item>
-                <v-divider :key="employee"></v-divider>
+                <v-divider :key="employee" v-if="employee.area === workspaceName"></v-divider>
             </template>
             </v-list>
         </div>
