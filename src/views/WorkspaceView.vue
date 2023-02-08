@@ -6,9 +6,9 @@
         <v-col cols="2">
           <v-sheet rounded="lg">
             <v-list color="transparent">
-              <v-list-item v-for="option in options" :key="option" @click="changeWorkspace(option)" link>
+              <v-list-item v-for="area in areas" :key="area" @click="changeWorkspace(area.name, area.owner)" link>
                 <v-list-item-content>
-                  <v-list-item-title > {{ option }} </v-list-item-title>
+                  <v-list-item-title > {{ area.name }} </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
 
@@ -23,7 +23,7 @@
 
         <v-col>
           <v-sheet min-height="70vh" rounded="lg">
-            <workspace-component :workspaceName="this.workspaceType" />
+            <workspace-component :workspaceName="this.workspaceType" :workspaceOwner="this.workspaceOwner" />
             <employee-component :workspaceName="this.workspaceType"/>
           </v-sheet>
         </v-col>
@@ -38,21 +38,32 @@ import workspaceComponent from "@/components/WorkspaceComp.vue"
 import employeeComponent from "@/components/EmployeesComp.vue"
 export default {
   data: () => ({
-    options: [
-      'Management',
-      'Tech',
-      'Design',
-      'Marketing',
+    areas: [
+      // { name: 'Management', owner: 'Frederico Santos' },
+      // { name: 'Tech', owner: 'Alberto Ferreira' },
+      // { name: 'Design', owner: 'Maria Luíza' },
+      // { name: 'Marketing', owner: 'Clara Sousa' },
     ],
-    workspaceType: ''
+    workspaceType: '',
+    workspaceOwner: '',
   }),
   components: {
     workspaceComponent,
     employeeComponent
   },
+  async created() {
+        if (localStorage.getItem('workspaces')){
+            try {
+                this.areas = await JSON.parse(localStorage.getItem('workspaces'))
+            } catch (e){
+                localStorage.removeItem('workspaces')
+            }
+        }
+    },
   methods: {
-    changeWorkspace(name) {
+    changeWorkspace(name, owner) {
       this.workspaceType = name
+      this.workspaceOwner = owner
     }
   },
 };

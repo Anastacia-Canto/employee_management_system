@@ -6,19 +6,7 @@
 
         <v-btn rounded text v-for="path in paths" :key="path.title" :to="path.to"> {{ path.title }} </v-btn>
 
-        <v-btn rounded text>Create new workspace</v-btn>
-
         <v-spacer></v-spacer>
-
-        <!-- <v-responsive max-width="260">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field> -->
-        <!-- </v-responsive> -->
       </v-container>
     </v-app-bar>
       <v-main class="teal accent-2">
@@ -36,8 +24,8 @@
 export default {
   data: () => ({
       paths: [
-        { title: "Wokspaces", to: "/workspaces" },
-        { title: "Employees", to: "/employees" },
+        { title: "Workspaces", to: "/workspaces" },
+        { title: "Create new workspace", to: "/addWorkspace" },
       ]
   }),
 };

@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../App.vue"
 import WorkspaceView from "../views/WorkspaceView.vue";
-import EmployeesView from "../views/EmployeesView.vue";
+import EmployeesComp from "../components/EmployeesComp.vue";
+import AddWorkspaceView from "../views/AddWorkspaceView.vue";
 
 Vue.use(VueRouter);
 
@@ -25,7 +26,12 @@ const routes = [
   {
     path: "/employees",
     name: "employees",
-    component: EmployeesView,
+    component: EmployeesComp,
+  },
+  {
+    path: "/addWorkspace",
+    name: "addWorkspace",
+    component: AddWorkspaceView,
   },
 ];
 

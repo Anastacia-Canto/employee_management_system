@@ -1,11 +1,15 @@
 <template>
-    <v-main>
-        <h1> {{ workspaceName }}</h1>
+    <v-main class="pt-3 pl-5">
         <div v-if="workspaceName">
-            <p> Owner: {{ this.owner }} </p>
-            <v-list v-for="employee in team" :key="employee">
-                <v-list-item> {{ employee }}</v-list-item>
-            </v-list>
+            <v-row>
+                <v-col cols="9">
+                    <h1> {{ workspaceName }}</h1>
+                    <p> Owner: {{ workspaceOwner }} </p>
+                </v-col>
+                <v-col cols="3">
+                    <v-btn class="mt-3">Add Employee</v-btn>
+                </v-col>
+            </v-row>
         </div>
     </v-main>
 </template>
@@ -15,9 +19,9 @@ export default {
     name: "workspace-component",
     props: {
        workspaceName: String,
+       workspaceOwner: String,
     },
     data: () => ({
-        owner: "Frederico",
     }),
 }
 </script>
