@@ -1,10 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../App.vue"
-import ManagementView from "../views/ManagementView.vue";
-import TechView from "../views/TechView.vue";
-import DesignView from "../views/DesignView.vue";
-import MarketingView from "../views/MarketingView.vue";
+import WorkspaceView from "../views/WorkspaceView.vue";
+import EmployeesView from "../views/EmployeesView.vue";
 
 Vue.use(VueRouter);
 
@@ -20,24 +18,14 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/management",
-    name: "management",
-    component: ManagementView,
+    path: "/workspaces",
+    name: "workspaces",
+    component: WorkspaceView,
   },
   {
-    path: "/tech",
-    name: "tech",
-    component: TechView,
-  },
-  {
-    path: "/design",
-    name: "design",
-    component: DesignView,
-  },
-  {
-    path: "/marketing",
-    name: "marketing",
-    component: MarketingView,
+    path: "/employees",
+    name: "employees",
+    component: EmployeesView,
   },
 ];
 
