@@ -25,6 +25,7 @@ export default {
   data: () => ({
       paths: [
         { title: "Workspaces", to: "/workspaces" },
+        { title: "Employees", to: "/employees" },
         { title: "Create new workspace", to: "/addWorkspace" },
       ]
   }),
