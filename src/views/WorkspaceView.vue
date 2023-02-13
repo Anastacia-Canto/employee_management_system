@@ -23,8 +23,16 @@
 
         <v-col>
           <v-sheet min-height="70vh" rounded="lg">
-            <workspace-component :workspaceName="this.workspaceType" :workspaceOwner="this.workspaceOwner" />
-            <employee-component :workspaceName="this.workspaceType"/>
+              <workspace-component :workspaceName="this.workspaceType" :workspaceOwner="this.workspaceOwner" />
+              <employee-component :workspaceName="this.workspaceType"/>
+            <div>
+              <v-row v-if="this.workspaceType !== ''">
+                <v-col cols="9"></v-col>
+                  <v-col cols="3">
+                      <v-btn class="mt-3" @click="deleteWorkspace">Delete Workspace</v-btn>
+                  </v-col>
+              </v-row>
+            </div>
           </v-sheet>
         </v-col>
       </v-row>
@@ -64,6 +72,17 @@ export default {
     changeWorkspace(name, owner) {
       this.workspaceType = name
       this.workspaceOwner = owner
+    },
+    deleteWorkspace(){
+      const newAreas = []
+      for (let i = 0; i < this.areas.length; i++){
+        if (this.areas[i].name !== this.workspaceType){
+          newAreas.push(this.areas[i])
+        }
+      }
+      this.areas = newAreas
+      const parsed = JSON.stringify(this.areas)
+      localStorage.setItem('workspaces', parsed)
     }
   },
 };
