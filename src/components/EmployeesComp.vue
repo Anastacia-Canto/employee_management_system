@@ -1,21 +1,23 @@
 <template>
     <v-main class="pt-0 pl-5">
         <div v-if="workspaceName">
-            <!-- <v-list v-for="employee in team" :key="employee" link>
-                <v-list-item v-if="workspaceName === employee.workspace"> {{ employee.name }} {{ employee.role }}</v-list-item>
-            </v-list> -->
             <v-list three-line>
             <template v-for="employee in team">
                 <v-list-item :key="employee.fullName" v-if="employee.area === workspaceName">
                 <v-list-item-avatar>
-                    <v-img :src="employee.avatar"></v-img>
+                    <v-img :src="employee.avatar || 'cat.png'"></v-img>
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-title >{{ employee.fullName }}</v-list-item-title>
-                    <v-list-item-subtitle> {{ employee.age }} anos</v-list-item-subtitle>
-                    <v-list-item-subtitle> {{ employee.role }} </v-list-item-subtitle>
-                    <v-list-item-subtitle> {{ employee.area }} </v-list-item-subtitle>
+                    <v-col cols="10">
+                        <v-list-item-title >{{ employee.fullName }}</v-list-item-title>
+                        <v-list-item-subtitle> {{ employee.age }} anos</v-list-item-subtitle>
+                        <v-list-item-subtitle> {{ employee.role }} </v-list-item-subtitle>
+                        <v-list-item-subtitle> {{ employee.area }} </v-list-item-subtitle>
+                    </v-col>
+                    <v-col cols="2">
+                        <v-icon @click="deleteEmployee(employee.fullName)">mdi-delete-forever</v-icon>
+                    </v-col>
                 </v-list-item-content>
                 </v-list-item>
                 <v-divider :key="employee" v-if="employee.area === workspaceName"></v-divider>
@@ -85,6 +87,19 @@ export default {
             }
         }
     },
+    methods: {
+        deleteEmployee(name){
+            const newTeam = []
+            for (let i = 0; i < this.team.length; i++){
+                if (this.team[i].fullName !== name){
+                newTeam.push(this.team[i])
+                }
+            }
+            this.team = newTeam
+            const parsed = JSON.stringify(this.team)
+            localStorage.setItem('employees', parsed)
+        }
+    }
 }
 </script>
 

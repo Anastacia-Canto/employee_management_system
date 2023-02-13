@@ -22,6 +22,7 @@ export default {
        workspaceOwner: String,
     },
     data: () => ({
+        
     }),
 }
 </script>
