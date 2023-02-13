@@ -36,7 +36,31 @@
                         ></v-text-field>
                         </v-col>
                     </v-row>
-                    <v-btn type="submit" @click="addWorkspace">Submit</v-btn>
+                    <v-btn type="submit" @click.prevent="addWorkspace">Submit</v-btn>
+                    <v-snackbar v-model="errorSnackbar" top>
+                        {{ errorSnackbarText }}
+                        <template >
+                          <v-btn
+                            color="red"
+                            text
+                            @click="errorSnackbar = false"
+                          >
+                            Close
+                          </v-btn>
+                        </template>
+                    </v-snackbar>
+                    <v-snackbar v-model="snackbar" top>
+                        {{ snackbarText }}
+                        <template >
+                          <v-btn
+                            color="teal accent-2"
+                            text
+                            @click="snackbar = false"
+                          >
+                            Close
+                          </v-btn>
+                        </template>
+                    </v-snackbar>
                     </v-container>
                 </v-form>
             </template>
@@ -60,6 +84,10 @@
         v => !!v || 'Name is required',
         v => v.length <= 30 || 'Name must be less than 20 characters',
       ],
+      snackbar: false,
+      snackbarText: 'Workspace successfully created!',
+      errorSnackbar: false,
+      errorSnackbarText: 'All fields are required!'
     }),
     created() {
         if (localStorage.getItem('workspaces')){
@@ -72,6 +100,10 @@
     },
     methods:{
         addWorkspace(){
+            if (this.newWorkspace.name.length == 0 || this.newWorkspace.owner.length == 0){
+              this.errorSnackbar = true
+              return
+            }
             this.workspaces.push(this.newWorkspace)
             this.newWorkspace = { name: '', owner: ''}
             this.storeWorkspace()
@@ -79,8 +111,7 @@
         storeWorkspace(){
             const parsed = JSON.stringify(this.workspaces)
             localStorage.setItem('workspaces', parsed)
-            alert('Workspace successfully created!')
-
+            this.snackbar = true
         }
     }
   }

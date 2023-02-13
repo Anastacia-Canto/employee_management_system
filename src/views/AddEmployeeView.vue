@@ -47,7 +47,31 @@
                             required
                         ></v-text-field>
                     
-                    <v-btn type="submit" @click="addEmployee">Submit</v-btn>
+                    <v-btn type="submit" @click.prevent="addEmployee">Submit</v-btn>
+                    <v-snackbar v-model="errorSnackbar" top>
+                        {{ errorSnackbarText }}
+                        <template >
+                          <v-btn
+                            color="red"
+                            text
+                            @click="errorSnackbar = false"
+                          >
+                            Close
+                          </v-btn>
+                        </template>
+                    </v-snackbar>
+                    <v-snackbar v-model="snackbar" top>
+                        {{ snackbarText }}
+                        <template >
+                          <v-btn
+                            color="teal accent-2"
+                            text
+                            @click="snackbar = false"
+                          >
+                            Close
+                          </v-btn>
+                        </template>
+                    </v-snackbar>
                     </v-container>
                 </v-form>
             </template>
@@ -75,6 +99,10 @@
         area: '',
         salary: undefined,
         },
+      snackbar: false,
+      snackbarText: 'Employee successfully added!',
+      errorSnackbar: false,
+      errorSnackbarText: 'All fields are required!'
     }),
     mounted() {
         if (localStorage.getItem('employees')){
@@ -97,6 +125,10 @@
     },
     methods:{
         addEmployee(){
+            if (this.newEmployee.fullName.length == 0 || !this.newEmployee.area){
+                this.errorSnackbar = true
+                return
+            }
             this.employees.push(this.newEmployee)
             this.newEmployee = {
                 avatar: '',
@@ -111,7 +143,7 @@
         storeEmployee(){
             const parsed = JSON.stringify(this.employees)
             localStorage.setItem('employees', parsed)
-            alert('Employee successfully added!')
+            this.snackbar = true
 
         },
         selectArea(event){
