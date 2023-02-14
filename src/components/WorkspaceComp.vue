@@ -6,9 +6,6 @@
                     <h1> {{ workspaceName }}</h1>
                     <p> Owner: {{ workspaceOwner }} </p>
                 </v-col>
-                <v-col cols="3">
-                    <v-btn class="mt-3" href="/addEmployee">Add Employee</v-btn>
-                </v-col>
             </v-row>
         </div>
     </v-main>

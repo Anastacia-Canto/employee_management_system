@@ -27,18 +27,26 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content>
-                            <v-col cols="8">
+                            <v-col cols="10">
                                 <v-list-item-title >{{ employee.fullName }}</v-list-item-title>
-                                <!-- <v-list-item-subtitle> {{ employee.age }} anos</v-list-item-subtitle>
-                                <v-list-item-subtitle> {{ employee.role }} </v-list-item-subtitle>
-                                <v-list-item-subtitle> {{ employee.area }} </v-list-item-subtitle> -->
+                                <v-list-item-subtitle> Age: {{ employee.age }} anos</v-list-item-subtitle>
+                                <v-list-item-subtitle> Role: {{ employee.role }} </v-list-item-subtitle>
+                                <v-list-item-subtitle> Area: {{ employee.area }} </v-list-item-subtitle>
+                                <div class="ml-3">
+                                  <v-btn icon @click="showSalary = !showSalary">Salary</v-btn>
+                                  <v-list-item-subtitle v-if="showSalary"> € {{ employee.salary }} </v-list-item-subtitle>
+                                  <v-list-item-subtitle v-else > ***</v-list-item-subtitle>
+                                </div>
                             </v-col>
                             <v-col cols="2">
-                                    <v-btn @click="edit = true" icon><v-icon>mdi-pencil</v-icon></v-btn>
-                            </v-col>
-
-                            <v-col cols="2">
-                                <v-icon @click="deleteEmployee(employee.fullName)">mdi-delete-forever</v-icon>
+                              <v-tooltip bottom>
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-btn icon v-bind="attrs" v-on="on">
+                                    <v-icon @click="deleteEmployee(employee.fullName)">mdi-delete-forever</v-icon>
+                                  </v-btn>
+                                </template>
+                                <span>Delete employee</span>
+                              </v-tooltip>
                             </v-col>
                         </v-list-item-content>
                         </v-list-item>
@@ -57,6 +65,7 @@
 <script>
 export default {
   data: () => ({
+    showSalary: false,
     employees: [
         // {
         //   avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
@@ -75,10 +84,25 @@ export default {
             } catch (e){
                 console.log(e.message)
             }
+            for (let i = 0; i < this.employees.length; i++){
+              this.employees[i].showSalary = false
+            }
         }
+
     },
   methods: {
-    
-    }
+    deleteEmployee(name){
+          const newTeam = []
+          for (let i = 0; i < this.employees.length; i++){
+              if (this.employees[i].fullName !== name){
+              newTeam.push(this.employees[i])
+              }
+          }
+          this.employees = newTeam
+          const parsed = JSON.stringify(this.employees)
+          localStorage.setItem('employees', parsed)
+          location.reload()
+      },
+  }
 };
 </script>

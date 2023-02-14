@@ -11,12 +11,7 @@
                 <v-list-item-content>
                     <v-col cols="10">
                         <v-list-item-title >{{ employee.fullName }}</v-list-item-title>
-                        <v-list-item-subtitle> {{ employee.age }} anos</v-list-item-subtitle>
                         <v-list-item-subtitle> {{ employee.role }} </v-list-item-subtitle>
-                        <v-list-item-subtitle> {{ employee.area }} </v-list-item-subtitle>
-                    </v-col>
-                    <v-col cols="2">
-                        <v-icon @click="deleteEmployee(employee.fullName)">mdi-delete-forever</v-icon>
                     </v-col>
                 </v-list-item-content>
                 </v-list-item>
@@ -88,17 +83,8 @@ export default {
         }
     },
     methods: {
-        deleteEmployee(name){
-            const newTeam = []
-            for (let i = 0; i < this.team.length; i++){
-                if (this.team[i].fullName !== name){
-                newTeam.push(this.team[i])
-                }
-            }
-            this.team = newTeam
-            const parsed = JSON.stringify(this.team)
-            localStorage.setItem('employees', parsed)
-        }
+
+        
     }
 }
 </script>

@@ -107,6 +107,7 @@
             this.workspaces.push(this.newWorkspace)
             this.newWorkspace = { name: '', owner: ''}
             this.storeWorkspace()
+            location.reload()
         },
         storeWorkspace(){
             const parsed = JSON.stringify(this.workspaces)

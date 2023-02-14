@@ -94,10 +94,10 @@
       newEmployee: { 
         avatar: '',
         fullName: '',
-        age: undefined,
+        age: '',
         role: '',
         area: '',
-        salary: undefined,
+        salary: '',
         },
       snackbar: false,
       snackbarText: 'Employee successfully added!',
@@ -133,10 +133,10 @@
             this.newEmployee = {
                 avatar: '',
                 fullName: '',
-                age: Number,
+                age:'',
                 role: '',
                 area: '',
-                salary: Number,
+                salary: '',
             }
             this.storeEmployee()
         },

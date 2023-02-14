@@ -83,6 +83,7 @@ export default {
       this.areas = newAreas
       const parsed = JSON.stringify(this.areas)
       localStorage.setItem('workspaces', parsed)
+      location.reload()
     }
   },
 };
