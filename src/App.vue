@@ -9,13 +9,13 @@
         <v-spacer></v-spacer>
       </v-container>
     </v-app-bar>
-      <v-main class="teal accent-2">
-        <router-view></router-view>
-        <v-row>
-          <v-col cols="4"></v-col>
-          <v-col cols="4"><h1 class="text-center">Welcome!</h1></v-col>
+        <v-row class="teal accent-2">
+          <v-col cols="3"></v-col>
+          <v-col cols="5"><h1 class="text-center">Welcome!</h1></v-col>
           <v-col cols="4"></v-col>
         </v-row>
+      <v-main class="teal accent-2">
+        <router-view></router-view>
       </v-main>
   </v-app>
 </template>
