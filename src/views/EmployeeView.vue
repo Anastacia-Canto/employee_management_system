@@ -48,15 +48,6 @@
                                 <span>Delete employee</span>
                               </v-tooltip>
                             </v-col>
-                              <!-- <v-textarea
-                              v-model="comment"
-                              append-icon="mdi-comment"
-                              class="mx-2"
-                              label="comments:"
-                              type="text"
-                              rows="1"
-                              @click:append="saveComment"
-                              ></v-textarea> -->
                         </v-list-item-content>
                         </v-list-item>
                         <v-divider :key="employee"></v-divider>
@@ -75,7 +66,6 @@
 export default {
   data: () => ({
     showSalary: false,
-    comment: '',
     employees: [
         // {
         //   avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',

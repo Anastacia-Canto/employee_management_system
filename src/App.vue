@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
-        <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
+        <v-avatar class="mr-10" color="teal accent-2" size="32"><v-img :src="'rocket.png'"></v-img></v-avatar>
 
         <v-btn rounded text v-for="path in paths" :key="path.title" :to="path.to"> {{ path.title }} </v-btn>
 
